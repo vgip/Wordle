@@ -1,0 +1,19 @@
+{
+    "name": "vgip/wordle",
+    "description": "Pick words from directory according to conditions",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Vgip\\Wordle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vgip",
+            "email": "truemaryan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    }
+}
