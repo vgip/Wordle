@@ -126,7 +126,7 @@ class Pick
      * 
      * @param array $wordList - directory of all words to check
      * @param array $letterList - conditions to check
-     * @return array
+     * @return array - values are candidates
      */
     public function getCandidate(array $wordList, array $letterList): array 
     {   
