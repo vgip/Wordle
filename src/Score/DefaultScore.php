@@ -9,9 +9,9 @@ namespace Vgip\Wordle\Score;
  */
 class DefaultScore 
 {
-    private int $defaultScroe = 100;
+    private int $defaultScroe = 150000;
     
-    public function setDefaultScroe(int $defaultScroe): void 
+    public function setDefaultScore(int $defaultScroe): void 
     {
         $this->defaultScroe = $defaultScroe;
     }

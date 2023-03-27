@@ -6,6 +6,7 @@ use Vgip\Wordle\Pick\Pick;
 use Vgip\Wordle\Pick\LetterConfigFactory;
 use Vgip\Wordle\Score\DefaultScore;
 use Vgip\Wordle\Score\WordUsed;
+use Vgip\Wordle\Score\LetterUsed;
 
 try {
     $pathWords = join(DIRECTORY_SEPARATOR, [__DIR__, 'words_en_5_letter.txt']);
@@ -27,14 +28,17 @@ try {
     
     $letterList = [];
     $letterList['z'] = false;
-    $letterList['x'] = LetterConfigFactory::factory('defined', [3]);
-    $letterList['i'] = LetterConfigFactory::factory('undefined', [4, 5]);
 
     $pick = new Pick();
     $pick->setSkipWordDoubleLetter(true);
     $pick->setResultLogOn(true);
     $candidateList = $pick->getCandidate($wordList, $letterList);
+    $letterListNumber = $pick->getLetterListNumber();
     $resultLog = $pick->getResultLog();
+    
+    arsort($letterListNumber);
+    $maxOccurrence = max($letterListNumber);
+    print_r($maxOccurrence);
     
     $defaultScore = new DefaultScore();
     $candidateScoreList1 = $defaultScore->getScore($candidateList);
@@ -42,8 +46,11 @@ try {
     $wordUsed = new WordUsed($wordUsedList);
     $candidateScoreList2 = $wordUsed->getScore($candidateScoreList1);
     
-    arsort($candidateScoreList2);
-    print_r($candidateScoreList2);
+    $letterUsed = new LetterUsed($letterListNumber);
+    $candidateScoreList3 = $letterUsed->getScore($candidateScoreList2);
+    
+    arsort($candidateScoreList3);
+    print_r($candidateScoreList3);
     
 //    foreach ($resultLog AS $word => $checkResultList) {
 //        foreach ($checkResultList AS $checkResult) {

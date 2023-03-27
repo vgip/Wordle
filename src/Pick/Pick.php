@@ -88,6 +88,12 @@ class Pick
      */
     private bool $resultLogOn = false;
     
+    /**
+     * Number of letters in all words
+     * 
+     * @var array
+     */
+    private array $letterListNumber = [];
     
     /**
      * Set the ability to skip or leave words with duplicate letters
@@ -119,6 +125,11 @@ class Pick
     public function getResultLog(): array 
     {
         return $this->resultLog;
+    }
+    
+    public function getLetterListNumber(): array 
+    {
+        return $this->letterListNumber;
     }
 
     /**
@@ -279,6 +290,8 @@ class Pick
         $placeNumber = 0;
         $letterUndefinedList = $this->letterPlaceList['undefined'];
         foreach ($wordList as $placeNumberRaw => $letter) {
+            
+            $this->letterListNumber[$letter] = (array_key_exists($letter, $this->letterListNumber)) ? $this->letterListNumber[$letter] + 1 : 1;
             
             $placeNumber = $placeNumberRaw + 1;
             
